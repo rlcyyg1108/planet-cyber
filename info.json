@@ -1,0 +1,9 @@
+{
+	"name": "planet-cyber",
+	"version": "1.0.0",
+	"title": "赛博星",
+	"author": "rlcyyg1108",
+    "contact": "https://github.com/rlcyyg1108/planet-cyber",
+	"description": "赛博星（Cyber），一颗以配方合并和简化自动化为主题的科幻星球。",
+	"factorio_version": "2.0"
+}
