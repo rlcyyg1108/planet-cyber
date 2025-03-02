@@ -1,5 +1,5 @@
 require("__space-age__/prototypes/planet/planet-aquilo-map-gen")
-local planet_map_gen = require("__space-age__/prototypes/planet/planet-map-gen")
+local planet_map_gen = require("__planet-cyber__/prototypes/planet/planet-map-gen")
 
 local effects = require("__core__.lualib.surface-render-parameter-effects")
 local asteroid_util = require("__space-age__.prototypes.planet.asteroid-spawn-definitions")
@@ -15,15 +15,15 @@ data:extend
     starmap_icon = "__planet-cyber__/graphics/icons/starmap-planet-cyber.png",
     starmap_icon_size = 512,
     gravity_pull = 100,--你相信引力吗
-    distance = 30,--星图距离
-    orientation = 0.4,--星图角度
+    distance = 32,--星图距离
+    orientation = 0.375,--星图角度
     magnitude = 1.75,--星球大小
     order = "e[cyber]",--排序
     subgroup = "planets",
-    map_gen_settings = planet_map_gen.aquilo(),--不会写地图生成，暂时用这个
+    --map_gen_settings = planet_map_gen.cyber(),--地图生成
     pollutant_type = nil,--没有污染干干净净的喵
     solar_power_in_space = 10,--很低的太阳能效率
-    procession_graphic_catalogue = planet_catalogue_aquilo,--不会写喵用原版的喵
+    procession_graphic_catalogue = planet_catalogue_aquilo,--这是什么
     surface_properties =
     {
       ["day-night-cycle"] = 60 * minute,

@@ -11,7 +11,7 @@ data:extend
     },
     {
         type = "tips-and-tricks-item",
-        name = "rlcpc-cyber-history-1",
+        name = "rlcyyg-cyber-history-1",
         tag = "[planet=cyber]",
         category = "space-age",
         order = "e-b",
@@ -20,7 +20,7 @@ data:extend
     },
     {
         type = "tips-and-tricks-item",
-        name = "rlcpc-cyber-history-2",
+        name = "rlcyyg-cyber-history-2",
         tag = "[planet=cyber]",
         category = "space-age",
         order = "e-c",
@@ -29,7 +29,7 @@ data:extend
     },
     {
         type = "tips-and-tricks-item",
-        name = "rlcpc-cyber-history-3",
+        name = "rlcyyg-cyber-history-3",
         tag = "[planet=cyber]",
         category = "space-age",
         order = "e-d",
