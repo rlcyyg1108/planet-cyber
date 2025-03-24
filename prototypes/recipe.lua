@@ -1,14 +1,17 @@
+
+
+
 data:extend
 ({
   {
     type = "recipe",
-    name = "planet-cyber",
+    name = "rlcpc-planet-cyber",
     energy_required = 1,
     enabled = true,
     ingredients =
     {
       {type = "item", name = "wood", amount = 5}
     },
-    results = {{type="item", name="planet-cyber", amount=1}}
+    results = {{type="item", name="rlcpc-planet-cyber", amount=1}}
   },
 })

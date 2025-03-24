@@ -4,14 +4,14 @@ data:extend
 ({
   {
     type = "technology",
-    name = "planet-cyber",
+    name = "rlcpc-planet-cyber",
     icon = "__planet-cyber__/graphics/technology/planet-cyber.png",
     icon_size = 256,
     effects =
     {
       {
         type = "unlock-recipe",
-        recipe = "planet-cyber"
+        recipe = "rlcpc-planet-cyber"
       }
     },
     unit =

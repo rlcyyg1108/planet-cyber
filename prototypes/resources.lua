@@ -6,8 +6,8 @@ data:extend
   --自动放置，地图生成上的那个玩意
   {
     type = "autoplace-control",
-    name = "rlcyyg-pc-cyber-ore",
-    localised_name = {"", "[entity=rlcyyg-pc-cyber-ore] ", {"entity-name.rlcyyg-pc-cyber-ore"}},
+    name = "rlcpc-ore",
+    localised_name = {"", "[entity=rlcpc-ore] ", {"entity-name.rlcpc-ore"}},
     richness = true,
     order = "a-a",
     category = "resource",
@@ -16,7 +16,7 @@ data:extend
   --矿
   {
     type = "resource",
-    name = "rlcyyg-pc-cyber-ore",
+    name = "rlcpc-ore",
     icon = "__planet-cyber__/graphics/icons/planet-cyber.png",
     flags = {"placeable-neutral"},
     order = "a-b-h",
@@ -24,7 +24,7 @@ data:extend
     minable = {
       mining_particle = "iron-ore-particle",
       mining_time = 1.0,
-      result = "rlcyyg-pc-cyber-ore"
+      result = "rlcpc-ore"
     },
     collision_box = {{-0.1, -0.1}, {0.1, 0.1}},
     selection_box = {{-0.5, -0.5}, {0.5, 0.5}},
@@ -42,7 +42,7 @@ data:extend
     },
     autoplace = resource_autoplace.resource_autoplace_settings
     {
-      name = "rlcyyg-pc-cyber-ore",
+      name = "rlcpc-ore",
       order = "a",
       base_density = 6,
       base_spots_per_km2 = 1.5,

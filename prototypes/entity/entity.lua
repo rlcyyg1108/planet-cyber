@@ -2,12 +2,12 @@ data:extend
 ({
   {
     type = "assembling-machine",
-    name = "planet-cyber",
+    name = "rlcpc-planet-cyber",
     icon = "__planet-cyber__/graphics/icons/planet-cyber.png",
     icon_size = 64,
     icon_draw_specification = {shift = {0, -0.0}},
     flags = {"placeable-neutral", "placeable-player", "player-creation"},
-    minable = {mining_time = 0.1, result = "planet-cyber"},
+    minable = {mining_time = 0.1, result = "rlcpc-planet-cyber"},
     max_health = 300,
     corpse = "assembling-machine-1-remnants",
     dying_explosion = "assembling-machine-1-explosion",
