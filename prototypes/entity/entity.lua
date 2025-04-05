@@ -1,5 +1,60 @@
+local color_dark_gray = {0.412, 0.412, 0.412}----------Dark gray-暗暗rgb(105, 105, 105)
+
 data:extend
 ({
+  ----------------------------------------------------------------------------------------------------简单实体，即岩石、雷神星废墟等
+  {
+    type = "simple-entity",
+    name = "rlcpc-simple-entity-1",
+    flags = {"placeable-neutral", "placeable-off-grid"},
+    order = "z",
+    icon = "__planet-cyber__/graphics/entity/simple-entity-1.png",
+    subgroup = "grass",
+    max_health = 1,--我很弱，一撞就死
+    collision_box = {{-5.5, -5.5}, {5.5, 5.5}},
+    selection_box = {{-6, -6}, {6, 6}},
+    mined_sound = { filename = "__base__/sound/deconstruct-bricks.ogg" },
+    map_color = color_dark_gray,
+    pictures =
+      {
+        filename = "__planet-cyber__/graphics/entity/simple-entity-1.png",
+        width = 300,
+        height = 600,
+        scale = 0.5,
+      },
+    autoplace = {
+      control = "rocks",
+      order = "a[doodad]-a[rock]-a[huge]",
+      probability_expression = "multiplier * control * (region_box + rock_density - penalty)",
+      local_expressions =
+      {
+        multiplier = 0.07,
+        penalty = 1.7,
+        region_box = "range_select_base(moisture, 0.35, 1, 0.2, -10, 0)",
+        control = "control:rocks:size"
+      }
+    },
+    minable =
+    {
+      mining_particle = "stone-particle",
+      mining_time = 3,
+      results =
+      {
+        {type = "item", name = "rlcpc-ore", amount_min = 50, amount_max = 200},
+        {type = "item", name = "stone", amount_min = 50, amount_max = 200},
+        {type = "item", name = "iron-ore", amount_min = 50, amount_max = 150},
+        {type = "item", name = "copper-ore", amount_min = 50, amount_max = 130},
+        {type = "item", name = "stone-brick", amount_min = 50, amount_max = 100},
+        {type = "item", name = "iron-gear-wheel", amount_min = 50, amount_max = 80},
+        {type = "item", name = "iron-stick", amount_min = 50, amount_max = 80},
+        {type = "item", name = "copper-cable", amount_min = 50, amount_max = 80},
+        {type = "item", name = "electronic-circuit", amount_min = 15, amount_max = 30},
+        {type = "item", name = "advanced-circuit", amount_min = 10, amount_max = 20},
+        {type = "item", name = "processing-unit", amount_min = 5, amount_max = 10},
+      },
+    },
+  },
+  ----------------------------------------------------------------------------------------------------生产机器
   {
     type = "assembling-machine",
     name = "rlcpc-planet-cyber",
@@ -28,7 +83,7 @@ data:extend
       }
     },
     collision_box = {{-3.5, -3.5}, {3.5, 3.5}},
-    selection_box = {{-4, -4}, {4, 4}},
+    selection_box = {{-3.5, -3.5}, {3.5, 3.5}},
     circuit_wire_max_distance = assembling_machine_circuit_wire_max_distance,
     circuit_connector = circuit_connector_definitions["assembling-machine"],
     alert_icon_shift = util.by_pixel(0, -12),

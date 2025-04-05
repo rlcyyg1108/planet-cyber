@@ -47,6 +47,133 @@
 像戴森球一样，将事物包裹，困于其中无法逃逸
 
 
+
+
+
+-- 假设这是游戏中的配方数据，这里只是示例，实际使用时需要替换为真实的游戏配方数据
+local game_recipes = {
+    -- 示例配方 1
+    ["recipe1"] = {
+        energy = 2,
+        ingredients = {
+            {"item1", 3},
+            {"item2", 2}
+        },
+        result = "product1",
+        result_count = 1,
+        time = 5
+    },
+    -- 示例配方 2
+    ["recipe2"] = {
+        energy = 3,
+        ingredients = {
+            {"product1", 2},
+            {"item3", 1}
+        },
+        result = "product2",
+        result_count = 1,
+        time = 6
+    }
+}
+
+-- 递归函数，用于获取指定配方及其所有下位配方的总消耗
+local function get_total_ingredients(recipe_name, multiplier)
+    local recipe = game_recipes[recipe_name]
+    if not recipe then
+        return {}, 0, 0
+    end
+
+    local total_ingredients = {}
+    local total_time = recipe.time * multiplier
+    local total_energy = recipe.energy * multiplier
+
+    -- 处理当前配方的原料
+    for _, ingredient in ipairs(recipe.ingredients) do
+        local item_name = ingredient[1]
+        local item_count = ingredient[2] * multiplier
+        if total_ingredients[item_name] then
+            total_ingredients[item_name] = total_ingredients[item_name] + item_count
+        else
+            total_ingredients[item_name] = item_count
+        end
+
+        -- 检查原料是否有自己的配方
+        local sub_ingredients, sub_time, sub_energy = get_total_ingredients(item_name, item_count)
+        for sub_item, sub_count in pairs(sub_ingredients) do
+            if total_ingredients[sub_item] then
+                total_ingredients[sub_item] = total_ingredients[sub_item] + sub_count
+            else
+                total_ingredients[sub_item] = sub_count
+            end
+        end
+        total_time = total_time + sub_time
+        total_energy = total_energy + sub_energy
+    end
+
+    return total_ingredients, total_time, total_energy
+end
+
+-- 合并配方的函数
+local function merge_recipes(recipe_name)
+    local total_ingredients, total_time, total_energy = get_total_ingredients(recipe_name, 1)
+
+    -- 转换总原料表为列表格式
+    local final_ingredients = {}
+    for item, count in pairs(total_ingredients) do
+        table.insert(final_ingredients, {item, count})
+    end
+
+    -- 获取原始配方的结果和结果数量
+    local original_recipe = game_recipes[recipe_name]
+    local result = original_recipe.result
+    local result_count = original_recipe.result_count
+
+    -- 创建合并后的新配方
+    local merged_recipe = {
+        energy = total_energy,
+        ingredients = final_ingredients,
+        result = result,
+        result_count = result_count,
+        time = total_time
+    }
+
+    return merged_recipe
+end
+
+-- 示例使用：合并名为 "recipe2" 的配方
+local merged_recipe = merge_recipes("recipe2")
+
+-- 打印合并后的配方信息
+print("Merged Recipe:")
+print("Energy: " .. merged_recipe.energy)
+print("Time: " .. merged_recipe.time)
+print("Result: " .. merged_recipe.result .. " x" .. merged_recipe.result_count)
+print("Ingredients:")
+for _, ingredient in ipairs(merged_recipe.ingredients) do
+    print("  " .. ingredient[1] .. " x" .. ingredient[2])
+end    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  "history-1",
+  "history-2",
+  "history-3",
+  "ore",
+
+
 -- 元素周期表元素名称
 local elementNames = {
     "Hydrogen", "Helium", "Lithium", "Beryllium", "Boron", "Carbon", "Nitrogen", "Oxygen", "Fluorine", "Neon",
@@ -60,19 +187,92 @@ local elementNames = {
     "Thallium", "Lead", "Bismuth", "Polonium", "Astatine", "Radon", "Francium", "Radium", "Actinium", "Thorium",
     "Protactinium", "Uranium", "Neptunium", "Plutonium", "Americium", "Curium", "Berkelium", "Californium", "Einsteinium", "Fermium",
     "Mendelevium", "Nobelium", "Lawrencium", "Rutherfordium", "Dubnium", "Seaborgium", "Bohrium", "Hassium", "Meitnerium", "Darmstadtium",
-    "Roentgenium", "Copernicium", "Nihonium", "Flerovium", "Moscovium", "Livermorium", "Tennessine", "Oganesson"
+    "Roentgenium", "Copernicium", "Nihonium", "Flerovium", "Moscovium", "Livermorium", "Tennessine", "Oganesson",
 }
 
--- 将元素名称添加到 itemnames 表中
-for _, element in ipairs(elementNames) do
-    table.insert(itemnames, element)
-end
 
--- 打印结果（仅用于测试）
-for _, name in ipairs(itemnames) do
-    print(name)
-end
-    
+
+
+      --[[顺序注释
+    矿
+    板
+    齿轮
+    棒
+    缆
+    梁
+    粉
+    粉碎
+    "ore",
+    "plate",
+    "gear-wheel",
+    "stick",
+    "cable",
+    "beam",
+    "dust",
+    "crush",
+    ]]
+
+    {
+    type = "item",
+    name = "rlcpc-"..name.."-plate",
+    icon = "__planet-cyber__/graphics/icons/"..name..".png",
+    subgroup = "rlcpc-plate",
+    order = "a",
+    stack_size = 100
+    },
+    {
+    type = "item",
+    name = "rlcpc-"..name.."-gear-wheel",
+    icon = "__planet-cyber__/graphics/icons/"..name..".png",
+    subgroup = "rlcpc-gear-wheel",
+    order = "a",
+    stack_size = 100
+    },
+    {
+    type = "item",
+    name = "rlcpc-"..name.."-stick",
+    icon = "__planet-cyber__/graphics/icons/"..name..".png",
+    subgroup = "rlcpc-stick",
+    order = "a",
+    stack_size = 100
+    },
+    {
+    type = "item",
+    name = "rlcpc-"..name.."-cable",
+    icon = "__planet-cyber__/graphics/icons/"..name..".png",
+    subgroup = "rlcpc-cable",
+    order = "a",
+    stack_size = 100
+    },
+    {
+    type = "item",
+    name = "rlcpc-"..name.."-beam",
+    icon = "__planet-cyber__/graphics/icons/"..name..".png",
+    subgroup = "rlcpc-beam",
+    order = "a",
+    stack_size = 100
+    },
+    {
+    type = "item",
+    name = "rlcpc-"..name.."-dust",
+    icon = "__planet-cyber__/graphics/icons/"..name..".png",
+    subgroup = "rlcpc-dust",
+    order = "a",
+    stack_size = 100
+    },
+    {
+    type = "item",
+    name = "rlcpc-"..name.."-crush",
+    icon = "__planet-cyber__/graphics/icons/"..name..".png",
+    subgroup = "rlcpc-crush",
+    order = "a",
+    stack_size = 100
+    },
+
+
+
+
+
 
 
 

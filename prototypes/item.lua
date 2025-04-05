@@ -1,40 +1,28 @@
 ----------------------------------------------------------------------------------------------------item
 -- 定义一个函数来生成item配置
-local function item_autogenerate(name,icon)
+local function item_autogenerate(name)
   return {
       type = "item",
       name = "rlcpc-"..name.."",
-      icon = "__planet-cyber__/graphics/icons/"..icon..".png",
+      icon = "__planet-cyber__/graphics/icons/planet-cyber.png",
       subgroup = "rlcyyg1",
       order = "a",
       stack_size = 100
-  }
+    }
 end
 
 -- 创建包含对应名称的表
 local itemnames = {
-  {
-    name="history-1",
-    icon="planet-cyber",
-  },
-  {
-    name="history-2",
-    icon="planet-cyber",
-  },
-  {
-    name="history-3",
-    icon="planet-cyber",
-  },
-  {
-    name="ore",
-    icon="planet-cyber",
-  },
+  "history-1",
+  "history-2",
+  "history-3",
+  "ore",
 }
 
 -- 生成多个item配置
 local items = {}
 for _,item in ipairs(itemnames) do
-    table.insert(items, item_autogenerate(item.name,item.icon))
+    table.insert(items, item_autogenerate(item))
 end
 
 ----------------------------------------------------------------------------------------------------entityitem
@@ -54,8 +42,8 @@ end
 -- 创建包含对应名称的表
 local entityitemnames = {
   {
-    name="planet-cyber",
-    icon="planet-cyber",
+  name = "planet-cyber",
+  icon = "planet-cyber",
   },
 }
 
@@ -67,22 +55,21 @@ end
 
 ----------------------------------------------------------------------------------------------------add
 -- 合并多个表
-local allitems = {}
+local all_things = {}
 for _, item in ipairs(entityitems) do
-    table.insert(allitems, item)
+    table.insert(all_things, item)
 end
 for _, item in ipairs(items) do
-    table.insert(allitems, item)
+    table.insert(all_things, item)
 end
 
 -- 将合并后的表添加到游戏数据中
 if data and data.extend then
-    data:extend(allitems)
+    data:extend(all_things)
 end
 
-
-
---[[
+----------------------------------------------------------------------------------------------------test
+--
 -- 打印生成的item配置（仅用于测试）
 for _,item in ipairs(items) do
   for key, value in pairs(item) do
@@ -96,6 +83,6 @@ for _, entityitem in ipairs(entityitems) do
       print(key, value)
   end
   print("--------------------------------------")
-end]]
+end
 
 

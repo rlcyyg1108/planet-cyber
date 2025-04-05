@@ -7,6 +7,7 @@
 	"homepage": "https://github.com/rlcyyg1108/planet-cyber",
 	"description": "Planet Cyber, centered around recipe consolidation and simplified automation.\n\nNote: This mod is currently in the early development stage and is not recommended for play.",
 	"factorio_version": "2.0",
+	"space_travel_required": true,
 	"dependencies": [
         "space-age"
     ]
