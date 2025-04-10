@@ -5,34 +5,25 @@ data:extend
   ----------------------------------------------------------------------------------------------------简单实体，即岩石、雷神星废墟等
   {
     type = "simple-entity",
-    name = "rlcpc-simple-entity-1",
+    name = "rlcpc-ruin",
     flags = {"placeable-neutral", "placeable-off-grid"},
     order = "z",
-    icon = "__planet-cyber__/graphics/entity/simple-entity-1.png",
+    icon = "__planet-cyber__/graphics/icons/ruin.png",
     subgroup = "grass",
     max_health = 1,--我很弱，一撞就死
     collision_box = {{-5.5, -5.5}, {5.5, 5.5}},
     selection_box = {{-6, -6}, {6, 6}},
     mined_sound = { filename = "__base__/sound/deconstruct-bricks.ogg" },
     map_color = color_dark_gray,
-    pictures =
-      {
-        filename = "__planet-cyber__/graphics/entity/simple-entity-1.png",
-        width = 300,
-        height = 600,
-        scale = 0.5,
-      },
-    autoplace = {
-      control = "rocks",
-      order = "a[doodad]-a[rock]-a[huge]",
-      probability_expression = "multiplier * control * (region_box + rock_density - penalty)",
-      local_expressions =
-      {
-        multiplier = 0.07,
-        penalty = 1.7,
-        region_box = "range_select_base(moisture, 0.35, 1, 0.2, -10, 0)",
-        control = "control:rocks:size"
-      }
+    autoplace =
+    {
+        probability_expression = "multiplier * control * (rock_density - penalty)",
+        local_expressions =
+        {
+            multiplier = 0.1,--正比例概率系数
+            penalty = 1.7,
+            control = "control:rocks:size",
+        }
     },
     minable =
     {
@@ -51,6 +42,33 @@ data:extend
         {type = "item", name = "electronic-circuit", amount_min = 15, amount_max = 30},
         {type = "item", name = "advanced-circuit", amount_min = 10, amount_max = 20},
         {type = "item", name = "processing-unit", amount_min = 5, amount_max = 10},
+      },
+    },
+    pictures =
+    {
+      {
+        filename = "__planet-cyber__/graphics/entity/ruin-1.png",
+        width = 300,
+        height = 600,
+        scale = 1,
+      },
+      {
+        filename = "__planet-cyber__/graphics/entity/ruin-2.png",
+        width = 600,
+        height = 300,
+        scale = 1,
+      },
+      {
+        filename = "__planet-cyber__/graphics/entity/ruin-3.png",
+        width = 400,
+        height = 400,
+        scale = 1,
+      },
+      {
+        filename = "__planet-cyber__/graphics/entity/ruin-4.png",
+        width = 400,
+        height = 550,
+        scale = 1,
       },
     },
   },

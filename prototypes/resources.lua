@@ -1,4 +1,6 @@
 local resource_autoplace = require("resource-autoplace")
+local color_light_steel_blue = {0.459, 0.600, 0.690}----------Light Steel Blue-淡钢蓝 #7599B0
+local color_blue = {0, 0, 1}----------Blue-蓝 #0000ff
 local color_steel_blue = {0.275, 0.510, 0.706}----------Steel Blue-钢蓝 #4682B4
 
 data:extend
@@ -20,7 +22,7 @@ data:extend
     icon = "__planet-cyber__/graphics/icons/planet-cyber.png",
     flags = {"placeable-neutral"},
     order = "a-b-h",
-    map_color = color_steel_blue,
+    map_color = color_blue,
     minable = {
       mining_particle = "iron-ore-particle",
       mining_time = 1.0,

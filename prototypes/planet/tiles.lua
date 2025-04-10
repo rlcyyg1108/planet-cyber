@@ -1,4 +1,7 @@
-local color_steel_blue_transparent = {0.275, 0.510, 0.706, 0.5}----------Steel Blue-钢蓝 #4682B4
+local color_light_steel_blue = {0.459, 0.600, 0.690}----------Light Steel Blue-淡钢蓝 #7599B0
+local color_blue = {0, 0, 1}----------Blue-蓝 #0000ff
+local color_steel_blue = {0.275, 0.510, 0.706}----------Steel Blue-钢蓝 #4682B4
+
 --往下是从base/tiles里复制的，没有全用上
 local sounds = require("__base__/prototypes/entity/sounds")
 local tile_sounds = require("__base__/prototypes/tile/tile-sounds")
@@ -37,8 +40,8 @@ data:extend
         --transitions = dry_dirt_transitions,虚化不会搞一大坨
         --transitions_between_transitions = dry_dirt_transitions_between_transitions,
         walking_sound = tile_sounds.walking.sand,
-        map_color = color_steel_blue_transparent,
-        scorch_mark_color = color_steel_blue,
+        map_color = color_light_steel_blue,
+        scorch_mark_color = color_light_steel_blue,
         absorptions_per_second = tile_pollution.dirt,
         vehicle_friction_modifier = dirt_vehicle_speed_modifier,
         trigger_effect = tile_trigger_effects.dirt_1_trigger_effect()
