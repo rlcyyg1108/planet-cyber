@@ -34,7 +34,7 @@ local planet_map_gen_cyber = function()
       {
         settings =
         {
-          --搬运原版五颗星球的全部装饰地貌
+          --搬运原版五颗星球的全部装饰地貌，注释掉大幅影响观感的
           --nauvis
           ["brown-hairy-grass"] = {},
           ["green-hairy-grass"] = {},
@@ -98,9 +98,9 @@ local planet_map_gen_cyber = function()
           ["yellow-lettuce-lichen-1x1"] = {},
           ["yellow-lettuce-lichen-3x3"] = {},
           ["yellow-lettuce-lichen-6x6"] = {},
-          ["yellow-lettuce-lichen-cups-1x1"] = {},
-          ["yellow-lettuce-lichen-cups-3x3"] = {},
-          ["yellow-lettuce-lichen-cups-6x6"] = {},
+          --["yellow-lettuce-lichen-cups-1x1"] = {},
+          --["yellow-lettuce-lichen-cups-3x3"] = {},
+          --["yellow-lettuce-lichen-cups-6x6"] = {},
           ["green-lettuce-lichen-1x1"] = {},
           ["green-lettuce-lichen-3x3"] = {},
           ["green-lettuce-lichen-6x6"] = {},
@@ -171,7 +171,7 @@ local planet_map_gen_cyber = function()
           ["floating-iceberg-small"] = {},
           ["aqulio-ice-decal-blue"] = {},
           ["aqulio-snowy-decal"] = {},
-          ["snow-drift-decal"] = {},
+          --["snow-drift-decal"] = {},
         }
       },
       ["entity"] =

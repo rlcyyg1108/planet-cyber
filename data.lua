@@ -1,4 +1,4 @@
-require("prototypes/item-group")
+require("prototypes/other")
 require("prototypes/item")
 require("prototypes/recipe")
 require("prototypes/technology")

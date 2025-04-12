@@ -11,7 +11,7 @@ data:extend
     {
       {
         type = "unlock-recipe",
-        recipe = "rlcpc-planet-cyber"
+        recipe = "rlcpc-merge-automation-sp"
       }
     },
     unit =

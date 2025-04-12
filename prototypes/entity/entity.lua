@@ -10,7 +10,7 @@ data:extend
     order = "z",
     icon = "__planet-cyber__/graphics/icons/ruin.png",
     subgroup = "grass",
-    max_health = 1,--我很弱，一撞就死
+    max_health = 1,--一撞就死
     collision_box = {{-5.5, -5.5}, {5.5, 5.5}},
     selection_box = {{-6, -6}, {6, 6}},
     mined_sound = { filename = "__base__/sound/deconstruct-bricks.ogg" },
@@ -75,64 +75,123 @@ data:extend
   ----------------------------------------------------------------------------------------------------生产机器
   {
     type = "assembling-machine",
-    name = "rlcpc-planet-cyber",
-    icon = "__planet-cyber__/graphics/icons/planet-cyber.png",
-    icon_size = 64,
-    icon_draw_specification = {shift = {0, -0.0}},
+    name = "rlcpc-dri",--dissociation-reshaping-instrument--解离重塑仪
+    icon = "__planet-cyber__/graphics/entity/dri/dri-icon.png",
     flags = {"placeable-neutral", "placeable-player", "player-creation"},
-    minable = {mining_time = 0.1, result = "rlcpc-planet-cyber"},
-    max_health = 300,
-    corpse = "assembling-machine-1-remnants",
-    dying_explosion = "assembling-machine-1-explosion",
-    crafting_categories = {"crafting", "basic-crafting", "advanced-crafting"},
+    minable = {mining_time = 0.1, result = "rlcpc-dri"},
+    max_health = 1000,
+    corpse = "big-remnants",--通解贴图6666666
+    dying_explosion = "big-explosion",
+    crafting_categories = {"merge-sp"},
     crafting_speed = 1,
-    energy_usage = "100kW",
+    energy_usage = "1MW",
+    --ingredient_count = 64,机器支持的配方物品种类数，暂时理念冲突，注释掉
+    module_slots = 8,
+    allowed_effects = { "consumption", "speed", "productivity", "pollution", "quality" },--支持产能加成(:
     energy_source =
     {
       type = "electric",
       usage_priority = "secondary-input",
       emissions_per_minute = { pollution = 4 }
     },
-    resistances =
-    {
-      {
-        type = "fire",
-        percent = 90
-      }
+    resistances = {
+      {type = "physical",percent = 90},
+      {type = "fire",percent = 90},
+      {type = "impact",percent = 90},
     },
-    collision_box = {{-3.5, -3.5}, {3.5, 3.5}},
-    selection_box = {{-3.5, -3.5}, {3.5, 3.5}},
-    circuit_wire_max_distance = assembling_machine_circuit_wire_max_distance,
+    --impact_category = "merge-sp",
+    collision_box = {{-9.5, -9.5}, {9.5, 9.5}},
+    selection_box = {{-9.5, -9.5}, {9.5, 9.5}},
+    fluid_boxes_off_when_no_fluid_recipe = false,--无流体配方时流体接口关闭
+    circuit_wire_max_distance = assembling_machine_circuit_wire_max_distance,--这玩意怎么是全局变量啊，底端，Factorio\data\core\lualib\circuit-connector-sprites.lua
     circuit_connector = circuit_connector_definitions["assembling-machine"],
-    alert_icon_shift = util.by_pixel(0, -12),
-    graphics_set =
-    {
-      animation =
+    open_sound = { filename = "__base__/sound/machine-open.ogg", volume = 0.85 },
+    close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.75 },
+    --[[fluid_boxes = {
       {
-        layers =
-        {
-          {
-            filename = "__planet-cyber__/graphics/entity/planet-cyber.png",
-            priority="high",
-            width = 256,
-            height = 256,
-            frame_count = 32,
-            line_length = 8,
-            shift = util.by_pixel(0, 0),
-            scale = 1
-          }
-        }
-      }
-    },
-    allowed_effects = {"speed", "consumption", "pollution"},
-    effect_receiver = {uses_module_effects = true, uses_beacon_effects = true, uses_surface_effects = true},
-    impact_category = "metal",
+        production_type = "input",
+        volume = 1000,
+        pipe_picture = pipe_pic,
+        pipe_covers = pipecoverpic,
+        pipe_connections = { { direction = defines.direction.north, flow_direction = "input", position = { -2, -2.3 } } },
+        secondary_draw_orders = { north = -1 }
+      },
+    },]]
     working_sound =
     {
       sound = { filename = "__base__/sound/assembling-machine-t1-1.ogg", volume = 0.5 },
       audible_distance_modifier = 0.5,
       fade_in_ticks = 4,
       fade_out_ticks = 20
-    }
+    },
+    graphics_set = {
+      animation = {
+          layers = {
+              {
+                  filename = "__planet-cyber__/graphics/entity/dri/dri-hr-shadow.png",
+                  priority = "high",
+                  width = 900,
+                  height = 420,
+                  frame_count = 1,
+                  line_length = 1,
+                  repeat_count = 100,
+                  animation_speed = 0.3,
+                  shift = util.by_pixel_hr(0, -16),
+                  draw_as_shadow = true,
+                  scale = 0.25,
+              },
+              {
+                  priority = "high",
+                  width = 410,
+                  height = 410,
+                  frame_count = 100,
+                  shift = util.by_pixel_hr(0, -16),
+                  animation_speed = 0.3,
+                  scale = 0.5,
+                  stripes = {
+                      {
+                          filename = "__planet-cyber__/graphics/entity/dri/dri-hr-animation-1.png",
+                          width_in_frames = 8,
+                          height_in_frames = 8,
+                      },
+                      {
+                          filename = "__planet-cyber__/graphics/entity/dri/dri-hr-animation-2.png",
+                          width_in_frames = 8,
+                          height_in_frames = 8,
+                      },
+                  },
+              },
+          },
+      },
+      working_visualisations = {
+          {
+              fadeout = true,
+              secondary_draw_order = 1,
+              animation = {
+                  priority = "high",
+                  size = { 410, 410 },
+                  shift = util.by_pixel_hr(0, -16),
+                  frame_count = 100,
+                  draw_as_glow = true,
+                  scale = 0.5,
+                  animation_speed = 0.3,
+                  blend_mode = "additive",
+                  stripes = {
+                      {
+                          filename = "__planet-cyber__/graphics/entity/dri/dri-hr-animation-emission-1.png",
+                          width_in_frames = 8,
+                          height_in_frames = 8,
+                      },
+                      {
+                          filename = "__planet-cyber__/graphics/entity/dri/dri-hr-animation-emission-2.png",
+                          width_in_frames = 8,
+                          height_in_frames = 8,
+                      },
+                  },
+              },
+          }
+      },
+      reset_animation_when_frozen = true
+    },
   },
 })

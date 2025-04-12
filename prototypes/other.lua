@@ -20,6 +20,11 @@ data:extend
     group = "tiles",
     order = "z"
   },
+  ----------------------------------------------------------------------------------------------------category
+  {
+    type = "recipe-category",
+    name = "merge-sp",
+  },
 })
 
 

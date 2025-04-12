@@ -161,23 +161,6 @@ end
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-  "history-1",
-  "history-2",
-  "history-3",
-  "ore",
-
-
 -- 元素周期表元素名称
 local elementNames = {
     "Hydrogen", "Helium", "Lithium", "Beryllium", "Boron", "Carbon", "Nitrogen", "Oxygen", "Fluorine", "Neon",

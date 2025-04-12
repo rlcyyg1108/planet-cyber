@@ -31,7 +31,7 @@ function entityitem_autogenerate(name,icon)
   return {
       type = "item",
       name = "rlcpc-"..name.."",
-      icon = "__planet-cyber__/graphics/icons/"..icon..".png",
+      icon = "__planet-cyber__/graphics/"..icon..".png",
       subgroup = "rlcyyg1",
       order = "a",
       stack_size = 100,
@@ -42,8 +42,8 @@ end
 -- 创建包含对应名称的表
 local entityitemnames = {
   {
-  name = "planet-cyber",
-  icon = "planet-cyber",
+  name = "dri",
+  icon = "entity/dri/dri-icon",
   },
 }
 

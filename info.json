@@ -9,6 +9,7 @@
 	"factorio_version": "2.0",
 	"space_travel_required": true,
 	"dependencies": [
-        "space-age"
+        "space-age",
+		"? BobsStackSize"
     ]
 }
