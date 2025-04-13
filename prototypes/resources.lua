@@ -33,13 +33,12 @@ data:extend
     stage_counts = {15000, 9500, 5500, 2900, 1300, 400, 150, 80},
     stages = {
       sheet = {
-        filename = "__base__/graphics/entity/iron-ore/iron-ore.png",
+        filename = "__planet-cyber__/graphics/entity/ore.png",
         priority = "extra-high",
         size = 128,
         frame_count = 8,
         variation_count = 8,
         scale = 0.5,
-        tint = color_steel_blue
       }
     },
     autoplace = resource_autoplace.resource_autoplace_settings

@@ -42,7 +42,11 @@ end
 -- 创建包含对应名称的表
 local entityitemnames = {
   {
-  name = "dri",
+  name = "dri-1",
+  icon = "entity/dri/dri-icon",
+  },
+  {
+  name = "dri-2",
   icon = "entity/dri/dri-icon",
   },
 }

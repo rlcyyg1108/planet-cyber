@@ -6,5 +6,8 @@ https://mods.factorio.com/mod/planet-cyber
 我负责简体中文和英文的locale，但除了zh-CN以外都是机翻的，如果你觉得可以优化，欢迎以任何渠道联系我修正翻译  
 ***
 借物表  
- - Finely Crafted Graphics  
- https://mods.factorio.com/mod/finely-crafted-graphics  
+ - Finely Crafted Graphics的部分贴图  
+ https://mods.factorio.com/mod/finely-crafted-graphics
+ - Finely Crafted Machine的部分代码  
+ https://mods.factorio.com/mod/finely-crafted?from=search
+ - 

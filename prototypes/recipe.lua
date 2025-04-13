@@ -6,7 +6,7 @@ local function recipe_autogenerate(name,time,ingredients,results,icon)
         name = "rlcpc-" .. name,
         subgroup = "rlcyyg1",
         category = "merge-sp",
-        enabled = false,
+        enabled = true,
         energy_required = time,
         ingredients = ingredients,
         results = results

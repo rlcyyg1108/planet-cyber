@@ -1,4 +1,7 @@
-local color_dark_gray = {0.412, 0.412, 0.412}----------Dark gray-暗暗rgb(105, 105, 105)
+local color_dark_gray = {0.412, 0.412, 0.412}----------Dark gray-暗灰#696969
+local pipe_p = assembler2pipepictures()
+local pipe_c = pipecoverspictures()
+
 
 data:extend
 ({
@@ -73,20 +76,21 @@ data:extend
     },
   },
   ----------------------------------------------------------------------------------------------------生产机器
+  -----------------------------------------------------------------------------------------------------dri-1
   {
     type = "assembling-machine",
-    name = "rlcpc-dri",--dissociation-reshaping-instrument--解离重塑仪
+    name = "rlcpc-dri-1",--dissociation-reshaping-instrument--解离重塑仪
     icon = "__planet-cyber__/graphics/entity/dri/dri-icon.png",
     flags = {"placeable-neutral", "placeable-player", "player-creation"},
-    minable = {mining_time = 0.1, result = "rlcpc-dri"},
-    max_health = 1000,
+    minable = {mining_time = 0.1, result = "rlcpc-dri-1"},
+    max_health = 200,
     corpse = "big-remnants",--通解贴图6666666
     dying_explosion = "big-explosion",
     crafting_categories = {"merge-sp"},
     crafting_speed = 1,
     energy_usage = "1MW",
     --ingredient_count = 64,机器支持的配方物品种类数，暂时理念冲突，注释掉
-    module_slots = 8,
+    module_slots = 4,
     allowed_effects = { "consumption", "speed", "productivity", "pollution", "quality" },--支持产能加成(:
     energy_source =
     {
@@ -94,29 +98,41 @@ data:extend
       usage_priority = "secondary-input",
       emissions_per_minute = { pollution = 4 }
     },
-    resistances = {
+    resistances = 
+    {
       {type = "physical",percent = 90},
       {type = "fire",percent = 90},
       {type = "impact",percent = 90},
     },
-    --impact_category = "merge-sp",
-    collision_box = {{-9.5, -9.5}, {9.5, 9.5}},
-    selection_box = {{-9.5, -9.5}, {9.5, 9.5}},
-    fluid_boxes_off_when_no_fluid_recipe = false,--无流体配方时流体接口关闭
-    circuit_wire_max_distance = assembling_machine_circuit_wire_max_distance,--这玩意怎么是全局变量啊，底端，Factorio\data\core\lualib\circuit-connector-sprites.lua
+    impact_category = "metal",--这玩意干啥的，没了它机器不能动):
+    tile_width = 1,--没有这俩行实体中心会位于地格的某一顶点，3格四舍五入占四格，很坏):
+    tile_height = 1,
+    selection_box = {{-6.5, -5.5}, {6.5, 5.5}},--黄色的四角
+    collision_box = {{-6.2, -5.2}, {6.2, 5.2}},
+    fluid_boxes_off_when_no_fluid_recipe = true,--无流体配方时流体接口关闭
+    circuit_wire_max_distance = assembling_machine_circuit_wire_max_distance,--这玩意怎么是全局变量啊，该值=9，位于底端-Factorio\data\core\lualib\circuit-connector-sprites.lua
     circuit_connector = circuit_connector_definitions["assembling-machine"],
     open_sound = { filename = "__base__/sound/machine-open.ogg", volume = 0.85 },
     close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.75 },
-    --[[fluid_boxes = {
+    fluid_boxes =
+    {
       {
         production_type = "input",
+        pipe_picture = pipe_p,
+        pipe_covers = pipe_c,
         volume = 1000,
-        pipe_picture = pipe_pic,
-        pipe_covers = pipecoverpic,
-        pipe_connections = { { direction = defines.direction.north, flow_direction = "input", position = { -2, -2.3 } } },
-        secondary_draw_orders = { north = -1 }
+        pipe_connections = {{ flow_direction="input", direction = defines.direction.north, position = {-1, 1} }},
+        secondary_draw_orders = { north = -1 },
       },
-    },]]
+      {
+        production_type = "input",
+        pipe_picture = pipe_p,
+        pipe_covers = pipe_c,
+        volume = 1000,
+        pipe_connections = {{ flow_direction="input", direction = defines.direction.north, position = {1, 1} }},
+        secondary_draw_orders = { north = -1 },
+      },
+    },
     working_sound =
     {
       sound = { filename = "__base__/sound/assembling-machine-t1-1.ogg", volume = 0.5 },
@@ -124,9 +140,12 @@ data:extend
       fade_in_ticks = 4,
       fade_out_ticks = 20
     },
-    graphics_set = {
-      animation = {
-          layers = {
+    graphics_set = --graphics by hurricane,code by plexpt
+    {
+      animation = 
+      {
+          layers = 
+          {
               {
                   filename = "__planet-cyber__/graphics/entity/dri/dri-hr-shadow.png",
                   priority = "high",
@@ -138,7 +157,7 @@ data:extend
                   animation_speed = 0.3,
                   shift = util.by_pixel_hr(0, -16),
                   draw_as_shadow = true,
-                  scale = 0.25,
+                  scale = 0.5,
               },
               {
                   priority = "high",
@@ -146,9 +165,10 @@ data:extend
                   height = 410,
                   frame_count = 100,
                   shift = util.by_pixel_hr(0, -16),
-                  animation_speed = 0.3,
-                  scale = 0.5,
-                  stripes = {
+                  animation_speed = 1,
+                  scale = 1,
+                  stripes = 
+                  {
                       {
                           filename = "__planet-cyber__/graphics/entity/dri/dri-hr-animation-1.png",
                           width_in_frames = 8,
@@ -163,7 +183,8 @@ data:extend
               },
           },
       },
-      working_visualisations = {
+      working_visualisations = 
+      {
           {
               fadeout = true,
               secondary_draw_order = 1,
@@ -173,10 +194,307 @@ data:extend
                   shift = util.by_pixel_hr(0, -16),
                   frame_count = 100,
                   draw_as_glow = true,
-                  scale = 0.5,
-                  animation_speed = 0.3,
+                  scale = 1,
+                  animation_speed = 1,
                   blend_mode = "additive",
-                  stripes = {
+                  stripes = 
+                  {
+                      {
+                          filename = "__planet-cyber__/graphics/entity/dri/dri-hr-animation-emission-1.png",
+                          width_in_frames = 8,
+                          height_in_frames = 8,
+                      },
+                      {
+                          filename = "__planet-cyber__/graphics/entity/dri/dri-hr-animation-emission-2.png",
+                          width_in_frames = 8,
+                          height_in_frames = 8,
+                      },
+                  },
+              },
+          }
+      },
+      reset_animation_when_frozen = true
+    },
+  },
+  ----------------------------------------------------------------------------------------------------dri-2
+  {
+    type = "assembling-machine",
+    name = "rlcpc-dri-2",--dissociation-reshaping-instrument--解离重塑仪
+    icon = "__planet-cyber__/graphics/entity/dri/dri-icon.png",
+    flags = {"placeable-neutral", "placeable-player", "player-creation"},
+    minable = {mining_time = 0.1, result = "rlcpc-dri-2"},
+    max_health = 1000,
+    corpse = "big-remnants",--通解贴图6666666
+    dying_explosion = "big-explosion",
+    crafting_categories = {"merge-sp"},
+    crafting_speed = 5,
+    energy_usage = "10MW",
+    --ingredient_count = 64,机器支持的配方物品种类数，暂时理念冲突，注释掉
+    module_slots = 8,
+    allowed_effects = { "consumption", "speed", "productivity", "pollution", "quality" },--支持产能加成(:
+    energy_source =
+    {
+      type = "electric",
+      usage_priority = "secondary-input",
+      emissions_per_minute = { pollution = 4 }
+    },
+    resistances = 
+    {
+      {type = "physical",percent = 90},
+      {type = "fire",percent = 90},
+      {type = "impact",percent = 90},
+    },
+    impact_category = "metal",--这玩意干啥的，没了它机器不能动):
+    tile_width = 1,--没有这俩行实体中心会位于地格的某一顶点，3格四舍五入占四格，很坏):
+    tile_height = 1,
+    selection_box = {{-6.5, -5.5}, {6.5, 5.5}},--黄色的四角
+    collision_box = {{-6.2, -5.2}, {6.2, 5.2}},
+    fluid_boxes_off_when_no_fluid_recipe = true,--无流体配方时流体接口关闭
+    circuit_wire_max_distance = assembling_machine_circuit_wire_max_distance,--这玩意怎么是全局变量啊，该值=9，位于底端-Factorio\data\core\lualib\circuit-connector-sprites.lua
+    circuit_connector = circuit_connector_definitions["assembling-machine"],
+    open_sound = { filename = "__base__/sound/machine-open.ogg", volume = 0.85 },
+    close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.75 },
+    fluid_boxes =
+    {
+      {
+        production_type = "input",
+        pipe_picture = pipe_p,
+        pipe_covers = pipe_c,
+        volume = 1000,
+        pipe_connections = {{ flow_direction="input", direction = defines.direction.north, position = {-2, 5} }},
+        secondary_draw_orders = { north = -1 },
+      },
+      {
+        production_type = "input",
+        pipe_picture = pipe_p,
+        pipe_covers = pipe_c,
+        volume = 1000,
+        pipe_connections = {{ flow_direction="input", direction = defines.direction.north, position = {0, 5} }},
+        secondary_draw_orders = { north = -1 },
+      },
+      {
+        production_type = "input",
+        pipe_picture = pipe_p,
+        pipe_covers = pipe_c,
+        volume = 1000,
+        pipe_connections = {{ flow_direction="input", direction = defines.direction.north, position = {2, 5} }},
+        secondary_draw_orders = { north = -1 },
+      },
+    },
+    working_sound =
+    {
+      sound = { filename = "__base__/sound/assembling-machine-t1-1.ogg", volume = 0.5 },
+      audible_distance_modifier = 0.5,
+      fade_in_ticks = 4,
+      fade_out_ticks = 20
+    },
+    graphics_set = --graphics by hurricane,code by plexpt
+    {
+      animation = 
+      {
+          layers = 
+          {
+              {
+                  filename = "__planet-cyber__/graphics/entity/dri/dri-hr-shadow.png",
+                  priority = "high",
+                  width = 900,
+                  height = 420,
+                  frame_count = 1,
+                  line_length = 1,
+                  repeat_count = 100,
+                  animation_speed = 0.3,
+                  shift = util.by_pixel_hr(0, -16),
+                  draw_as_shadow = true,
+                  scale = 0.5,
+              },
+              {
+                  priority = "high",
+                  width = 410,
+                  height = 410,
+                  frame_count = 100,
+                  shift = util.by_pixel_hr(0, -16),
+                  animation_speed = 1,
+                  scale = 1,
+                  stripes = 
+                  {
+                      {
+                          filename = "__planet-cyber__/graphics/entity/dri/dri-hr-animation-1.png",
+                          width_in_frames = 8,
+                          height_in_frames = 8,
+                      },
+                      {
+                          filename = "__planet-cyber__/graphics/entity/dri/dri-hr-animation-2.png",
+                          width_in_frames = 8,
+                          height_in_frames = 8,
+                      },
+                  },
+              },
+          },
+      },
+      working_visualisations = 
+      {
+          {
+              fadeout = true,
+              secondary_draw_order = 1,
+              animation = {
+                  priority = "high",
+                  size = { 410, 410 },
+                  shift = util.by_pixel_hr(0, -16),
+                  frame_count = 100,
+                  draw_as_glow = true,
+                  scale = 1,
+                  animation_speed = 1,
+                  blend_mode = "additive",
+                  stripes = 
+                  {
+                      {
+                          filename = "__planet-cyber__/graphics/entity/dri/dri-hr-animation-emission-1.png",
+                          width_in_frames = 8,
+                          height_in_frames = 8,
+                      },
+                      {
+                          filename = "__planet-cyber__/graphics/entity/dri/dri-hr-animation-emission-2.png",
+                          width_in_frames = 8,
+                          height_in_frames = 8,
+                      },
+                  },
+              },
+          }
+      },
+      reset_animation_when_frozen = true
+    },
+  },
+  ----------------------------------------------------------------------------------------------------dri-3
+  {
+    type = "assembling-machine",
+    name = "rlcpc-dri-3",--dissociation-reshaping-instrument--解离重塑仪
+    icon = "__planet-cyber__/graphics/entity/dri/dri-icon.png",
+    flags = {"placeable-neutral", "placeable-player", "player-creation"},
+    minable = {mining_time = 0.1, result = "rlcpc-dri-3"},
+    max_health = 1000,
+    corpse = "big-remnants",--通解贴图6666666
+    dying_explosion = "big-explosion",
+    crafting_categories = {"merge-sp"},
+    crafting_speed = 5,
+    energy_usage = "10MW",
+    --ingredient_count = 64,机器支持的配方物品种类数，暂时理念冲突，注释掉
+    module_slots = 8,
+    allowed_effects = { "consumption", "speed", "productivity", "pollution", "quality" },--支持产能加成(:
+    energy_source =
+    {
+      type = "electric",
+      usage_priority = "secondary-input",
+      emissions_per_minute = { pollution = 4 }
+    },
+    resistances = 
+    {
+      {type = "physical",percent = 90},
+      {type = "fire",percent = 90},
+      {type = "impact",percent = 90},
+    },
+    impact_category = "metal",--这玩意干啥的，没了它机器不能动):
+    tile_width = 1,--没有这俩行实体中心会位于地格的某一顶点，3格四舍五入占四格，很坏):
+    tile_height = 1,
+    selection_box = {{-6.5, -5.5}, {6.5, 5.5}},--黄色的四角
+    collision_box = {{-6.2, -5.2}, {6.2, 5.2}},
+    fluid_boxes_off_when_no_fluid_recipe = true,--无流体配方时流体接口关闭
+    circuit_wire_max_distance = assembling_machine_circuit_wire_max_distance,--这玩意怎么是全局变量啊，该值=9，位于底端-Factorio\data\core\lualib\circuit-connector-sprites.lua
+    circuit_connector = circuit_connector_definitions["assembling-machine"],
+    open_sound = { filename = "__base__/sound/machine-open.ogg", volume = 0.85 },
+    close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.75 },
+    fluid_boxes =
+    {
+      {
+        production_type = "input",
+        pipe_picture = pipe_p,
+        pipe_covers = pipe_c,
+        volume = 1000,
+        pipe_connections = {{ flow_direction="input", direction = defines.direction.north, position = {-2, 5} }},
+        secondary_draw_orders = { north = -1 },
+      },
+      {
+        production_type = "input",
+        pipe_picture = pipe_p,
+        pipe_covers = pipe_c,
+        volume = 1000,
+        pipe_connections = {{ flow_direction="input", direction = defines.direction.north, position = {0, 5} }},
+        secondary_draw_orders = { north = -1 },
+      },
+      {
+        production_type = "input",
+        pipe_picture = pipe_p,
+        pipe_covers = pipe_c,
+        volume = 1000,
+        pipe_connections = {{ flow_direction="input", direction = defines.direction.north, position = {2, 5} }},
+        secondary_draw_orders = { north = -1 },
+      },
+    },
+    working_sound =
+    {
+      sound = { filename = "__base__/sound/assembling-machine-t1-1.ogg", volume = 0.5 },
+      audible_distance_modifier = 0.5,
+      fade_in_ticks = 4,
+      fade_out_ticks = 20
+    },
+    graphics_set = --graphics by hurricane,code by plexpt
+    {
+      animation = 
+      {
+          layers = 
+          {
+              {
+                  filename = "__planet-cyber__/graphics/entity/dri/dri-hr-shadow.png",
+                  priority = "high",
+                  width = 900,
+                  height = 420,
+                  frame_count = 1,
+                  line_length = 1,
+                  repeat_count = 100,
+                  animation_speed = 0.3,
+                  shift = util.by_pixel_hr(0, -16),
+                  draw_as_shadow = true,
+                  scale = 0.5,
+              },
+              {
+                  priority = "high",
+                  width = 410,
+                  height = 410,
+                  frame_count = 100,
+                  shift = util.by_pixel_hr(0, -16),
+                  animation_speed = 1,
+                  scale = 1,
+                  stripes = 
+                  {
+                      {
+                          filename = "__planet-cyber__/graphics/entity/dri/dri-hr-animation-1.png",
+                          width_in_frames = 8,
+                          height_in_frames = 8,
+                      },
+                      {
+                          filename = "__planet-cyber__/graphics/entity/dri/dri-hr-animation-2.png",
+                          width_in_frames = 8,
+                          height_in_frames = 8,
+                      },
+                  },
+              },
+          },
+      },
+      working_visualisations = 
+      {
+          {
+              fadeout = true,
+              secondary_draw_order = 1,
+              animation = {
+                  priority = "high",
+                  size = { 410, 410 },
+                  shift = util.by_pixel_hr(0, -16),
+                  frame_count = 100,
+                  draw_as_glow = true,
+                  scale = 1,
+                  animation_speed = 1,
+                  blend_mode = "additive",
+                  stripes = 
+                  {
                       {
                           filename = "__planet-cyber__/graphics/entity/dri/dri-hr-animation-emission-1.png",
                           width_in_frames = 8,
