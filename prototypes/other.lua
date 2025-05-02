@@ -10,20 +10,32 @@ data:extend
   ----------------------------------------------------------------------------------------------------subgroup
   {
     type = "item-subgroup",
-    name = "rlcyyg1",
+    name = "rlcpc-item",
     group = "planet-cyber",
     order = "a"
   },
   {
     type = "item-subgroup",
-    name = "cyber-tiles",
+    name = "rlcpc-entity",
+    group = "planet-cyber",
+    order = "b"
+  },
+  {
+    type = "item-subgroup",
+    name = "rlcpc-recipe",
+    group = "planet-cyber",
+    order = "c"
+  },
+  {
+    type = "item-subgroup",
+    name = "rlcpc-tiles",
     group = "tiles",
     order = "z"
   },
   ----------------------------------------------------------------------------------------------------category
   {
     type = "recipe-category",
-    name = "merge-sp",
+    name = "rlcpc-merge",
   },
 })
 

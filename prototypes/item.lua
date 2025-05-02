@@ -5,7 +5,7 @@ local function item_autogenerate(name)
       type = "item",
       name = "rlcpc-"..name.."",
       icon = "__planet-cyber__/graphics/icons/planet-cyber.png",
-      subgroup = "rlcyyg1",
+      subgroup = "rlcpc-item",
       order = "a",
       stack_size = 100
     }
@@ -32,7 +32,7 @@ function entityitem_autogenerate(name,icon)
       type = "item",
       name = "rlcpc-"..name.."",
       icon = "__planet-cyber__/graphics/"..icon..".png",
-      subgroup = "rlcyyg1",
+      subgroup = "rlcpc-entity",
       order = "a",
       stack_size = 100,
       place_result = "rlcpc-"..name.."",
@@ -47,6 +47,10 @@ local entityitemnames = {
   },
   {
   name = "dri-2",
+  icon = "entity/dri/dri-icon",
+  },
+  {
+  name = "dri-3",
   icon = "entity/dri/dri-icon",
   },
 }

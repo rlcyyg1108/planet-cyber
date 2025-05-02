@@ -3,13 +3,14 @@
 local function recipe_autogenerate(name,time,ingredients,results,icon)
     local recipe = {
         type = "recipe",
-        name = "rlcpc-" .. name,
-        subgroup = "rlcyyg1",
-        category = "merge-sp",
+        name = "rlcpc-merge-" .. name,
+        subgroup = "rlcpc-recipe",
+        category = "rlcpc-merge",
         enabled = true,
         energy_required = time,
         ingredients = ingredients,
-        results = results
+        results = results,
+        allow_productivity = true,
     }
     if icon then
         recipe.icon = icon
@@ -20,7 +21,7 @@ end
 -- 创建包含对应名称的表
 local recipenames = {
     {
-        name = "merge-automation-sp",
+        name = "automation-sp",
         time = 5,
         ingredients = {
           {type = "item", name = "iron-plate", amount = 2},
@@ -31,7 +32,7 @@ local recipenames = {
         },
     },
     {
-        name = "merge-logistic-sp",
+        name = "logistic-sp",
         time = 12,
         ingredients = {
           {type = "item", name = "iron-plate", amount = 11},
@@ -42,7 +43,7 @@ local recipenames = {
         }
     },
     {
-      name = "merge-military-sp",
+      name = "military-sp",
       time = 10,
       ingredients = {
           {type = "item", name = "iron-plate", amount = 9},
@@ -56,73 +57,151 @@ local recipenames = {
       }
     },
     {
-        name = "merge-chemical-sp",
+        name = "chemical-sp",
         time = 24,
         ingredients = {
           {type = "item", name = "iron-plate", amount = 14},
           {type = "item", name = "copper-plate", amount = 15},
-          {type = "item", name = "plastic-bar", amount = 6},
-          {type = "item", name = "sulfur", amount = 1},
+          {type = "item", name = "coal", amount = 3},
           {type = "item", name = "steel-plate", amount = 2},
+          {type = "fluid", name = "petroleum-gas", amount = 75},
+          {type = "fluid", name = "water", amount = 15},
         },
         results = {
             {type = "item", name = "chemical-science-pack", amount = 2}
         }
     },
     {
-        name = "merge-production-sp",
+        name = "production-sp",
         time = 42,
         ingredients = {
           {type = "item", name = "iron-plate", amount = 65},
           {type = "item", name = "copper-plate", amount = 115},
-          {type = "item", name = "plastic-bar", amount = 40},
           {type = "item", name = "stone", amount = 30},
+          {type = "item", name = "coal", amount = 20},
           {type = "item", name = "steel-plate", amount = 50},
           {type = "item", name = "stone-brick", amount = 20},
+          {type = "fluid", name = "petroleum-gas", amount = 400},
         },
         results = {
             {type = "item", name = "production-science-pack", amount = 6}
         }
     },
     {
-        name = "merge-utility-sp",
-        time = 21,
+        name = "utility-sp",
+        time = 42,
         ingredients = {
-          {type = "item", name = "iron-plate", amount = 46},
-          {type = "item", name = "copper-plate", amount = 110},
-          {type = "item", name = "plastic-bar", amount = 16},
-          {type = "item", name = "steel-plate", amount = 6},
-          {type = "item", name = "sulfur", amount = 5},
-          {type = "fluid", name = "water", amount = 94},
-          {type = "fluid", name = "heavy-oil", amount = 15},
+          {type = "item", name = "iron-plate", amount = 120},
+          {type = "item", name = "copper-plate", amount = 299},
+          {type = "item", name = "coal", amount = 23},
+          {type = "item", name = "steel-plate", amount = 16},
+          {type = "fluid", name = "petroleum-gas", amount = 610},
+          {type = "fluid", name = "water", amount = 350},
+          {type = "fluid", name = "heavy-oil", amount = 30},
         },
         results = {
-            {type = "item", name = "utility-science-pack", amount = 3}
+            {type = "item", name = "utility-science-pack", amount = 6}
+        }
+    },
+    ----------------------------------------------------------------------------------------------------space age sp
+    --[[{--原配方就已经很简洁了
+        name = "space-sp",
+        time = 15,
+        ingredients =
+        {
+          {type = "item", name = "iron-plate", amount = 2},
+          {type = "item", name = "carbon", amount = 1},
+          {type = "item", name = "ice", amount = 1}
+        },
+        results = {{type="item", name="space-science-pack", amount=5}},
+        surface_conditions =
+        {
+          {
+            property = "gravity",
+            min = 0,
+            max = 0
+          }
+        },
+    },]]
+    {
+        name = "metallurgic-sp",
+        time = 15,
+        ingredients =
+        {
+          {type = "item", name = "iron-plate", amount = 2},
+          {type = "item", name = "carbon", amount = 1},
+          {type = "item", name = "ice", amount = 1}
+        },
+        results = {{type="item", name="metallurgic-science-pack", amount=5}},
+        surface_conditions =
+        {
+          {
+            property = "pressure",
+            min = 4000,
+            max = 4000
+          }
+        },
+    },--写到这没写完
+    {
+        name = "base-six-sp",
+        time = 174,
+        icon = "__planet-cyber__/graphics/icons/merge-base-six-sp.png",
+        ingredients = {
+          {type = "item", name = "iron-plate", amount = 246},
+          {type = "item", name = "copper-plate", amount = 459},
+          {type = "item", name = "steel-plate", amount = 172},
+          {type = "item", name = "stone-brick", amount = 40},
+          {type = "item", name = "stone", amount = 30},
+          {type = "item", name = "coal", amount = 69},
+          {type = "fluid", name = "petroleum-gas", amount = 1160},
+          {type = "fluid", name = "water", amount = 380},
+          {type = "fluid", name = "heavy-oil", amount = 30},
+        },
+        results = {
+            {type = "item", name = "automation-science-pack", amount = 2},
+            {type = "item", name = "logistic-science-pack", amount = 2},
+            {type = "item", name = "military-science-pack", amount = 4},
+            {type = "item", name = "chemical-science-pack", amount = 4},
+            {type = "item", name = "production-science-pack", amount = 6},
+            {type = "item", name = "utility-science-pack", amount = 6},
+        }
+    },
+    ----------------------------------------------------------------------------------------------------item
+    {
+        name = "electronic-circuit",
+        time = 5,
+        ingredients = {
+          {type = "item", name = "iron-plate", amount = 10},
+          {type = "item", name = "copper-plate", amount = 15},
+        },
+        results = {
+            {type = "item", name = "electronic-circuit", amount = 10},
         }
     },
     {
-        name = "merge-base-six-sp",
-        time = 870,
-        icon = "__planet-cyber__/graphics/icons/merge-base-six-sp.png",
+        name = "advanced-circuit",
+        time = 60,
         ingredients = {
-          {type = "item", name = "iron-plate", amount = 1092},
-          {type = "item", name = "copper-plate", amount = 1895},
-          {type = "item", name = "plastic-bar", amount = 424},
-          {type = "item", name = "steel-plate", amount = 343},
-          {type = "item", name = "stone-brick", amount = 200},
-          {type = "item", name = "stone", amount = 150},
-          {type = "item", name = "coal", amount = 100},
-          {type = "item", name = "sulfur", amount = 57},
-          {type = "fluid", name = "water", amount = 943},
-          {type = "fluid", name = "heavy-oil", amount = 150},
+          {type = "item", name = "iron-plate", amount = 30},
+          {type = "item", name = "copper-plate", amount = 65},
+          {type = "item", name = "plastic-bar", amount = 20},
         },
         results = {
-            {type = "item", name = "automation-science-pack", amount = 10},
-            {type = "item", name = "logistic-science-pack", amount = 10},
-            {type = "item", name = "military-science-pack", amount = 20},
-            {type = "item", name = "chemical-science-pack", amount = 20},
-            {type = "item", name = "production-science-pack", amount = 30},
-            {type = "item", name = "utility-science-pack", amount = 30},
+            {type = "item", name = "advanced-circuit", amount = 10},
+        }
+    },
+    {
+        name = "processing-unit",
+        time = 100,
+        ingredients = {
+          {type = "item", name = "iron-plate", amount = 241},
+          {type = "item", name = "copper-plate", amount = 400},
+          {type = "item", name = "plastic-bar", amount = 40},
+          {type = "item", name = "sulfur", amount = 5},
+          {type = "fuild", name = "water", amount = 100},
+        },
+        results = {
+            {type = "item", name = "processing-unit", amount = 10},
         }
     },
 }
