@@ -192,7 +192,7 @@ data:extend
                   animation_speed = 0.3,
                   shift = util.by_pixel_hr(0, -16),
                   draw_as_shadow = true,
-                  scale = 0.125,
+                  scale = 0.14,
               },
               {
                   priority = "high",
@@ -201,7 +201,7 @@ data:extend
                   frame_count = 100,
                   --shift = util.by_pixel_hr(0, -16),
                   animation_speed = 1,
-                  scale = 0.25,
+                  scale = 0.28,
                   stripes = 
                   {
                       {
@@ -229,7 +229,7 @@ data:extend
                   shift = util.by_pixel_hr(0, -16),
                   frame_count = 100,
                   draw_as_glow = true,
-                  scale = 0.25,
+                  scale = 0.28,
                   animation_speed = 1,
                   blend_mode = "additive",
                   stripes = 
@@ -280,8 +280,8 @@ data:extend
       {type = "impact",percent = 90},
     },
     impact_category = "metal",--这玩意干啥的，没了它机器不能动):
-    --tile_width = 1,--没有这俩行实体中心会位于地格的某一顶点，3格四舍五入占四格，很坏):然而2必须要……
-    tile_height = 1,
+    tile_width = 1,--没有这俩行实体中心会位于地格的某一顶点，3格四舍五入占四格，很坏):然而2必须要……
+    tile_height = 2,
     selection_box = {{-3.5, -3}, {3.5, 3}},
     collision_box = {{-3.2, -2.7}, {3.2, 2.7}},
     fluid_boxes_off_when_no_fluid_recipe = true,--无流体配方时流体接口关闭

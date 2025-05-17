@@ -22,9 +22,15 @@ data:extend
   },
   {
     type = "item-subgroup",
-    name = "rlcpc-recipe",
+    name = "rlcpc-merge-sp",
     group = "planet-cyber",
     order = "c"
+  },
+  {
+    type = "item-subgroup",
+    name = "rlcpc-merge-recipe",
+    group = "planet-cyber",
+    order = "d"
   },
   {
     type = "item-subgroup",

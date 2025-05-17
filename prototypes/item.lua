@@ -4,7 +4,7 @@ local function item_autogenerate(name)
   return {
       type = "item",
       name = "rlcpc-"..name.."",
-      icon = "__planet-cyber__/graphics/icons/planet-cyber.png",
+      icon = "__planet-cyber__/graphics/icons/"..name..".png",
       subgroup = "rlcpc-item",
       order = "a",
       stack_size = 100
@@ -13,9 +13,6 @@ end
 
 -- 创建包含对应名称的表
 local itemnames = {
-  "history-1",
-  "history-2",
-  "history-3",
   "ore",
 }
 
