@@ -4,7 +4,6 @@ local function recipe_autogenerate(name,time,ingredients,results,icon)
     local recipe = {
         type = "recipe",
         name = "rlcpc-merge-" .. name,
-        subgroup = "rlcpc-recipe",
         category = "rlcpc-merge",
         enabled = true,
         energy_required = time,
@@ -14,6 +13,18 @@ local function recipe_autogenerate(name,time,ingredients,results,icon)
     }
     if icon then
         recipe.icon = icon
+    end
+
+    if subgroup then
+        recipe.subgroup = subgroup
+    else
+        recipe.subgroup = "rlcpc-recipe"
+    end
+
+    if order then
+        recipe.order = order
+    else
+        recipe.order = "a"
     end
     return recipe
 end
@@ -196,9 +207,9 @@ local recipenames = {
         ingredients = {
           {type = "item", name = "iron-plate", amount = 241},
           {type = "item", name = "copper-plate", amount = 400},
-          {type = "item", name = "plastic-bar", amount = 40},
-          {type = "item", name = "sulfur", amount = 5},
-          {type = "fuild", name = "water", amount = 100},
+          {type = "item", name = "coal", amount = 20},
+          {type = "fluid", name = "petroleum-gas", amount = 475},
+          {type = "fluid", name = "water", amount = 175},
         },
         results = {
             {type = "item", name = "processing-unit", amount = 10},

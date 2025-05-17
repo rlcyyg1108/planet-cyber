@@ -113,6 +113,7 @@ data:extend
     close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.75 },
     fluid_boxes =
     --[[
+    3*3
     #=#
     ===
     #=#
@@ -131,6 +132,14 @@ data:extend
         pipe_picture = assembler2pipepictures(),
         pipe_covers = pipecoverspictures(),
         volume = 1000,
+        pipe_connections = {{ flow_direction="input", direction = defines.direction.north, position = {0, -1} }},
+        secondary_draw_orders = { north = -1 }
+      },
+      {
+        production_type = "input",
+        pipe_picture = assembler2pipepictures(),
+        pipe_covers = pipecoverspictures(),
+        volume = 1000,
         pipe_connections = {{ flow_direction="input", direction = defines.direction.north, position = {1, -1} }},
         secondary_draw_orders = { north = -1 }
       },
@@ -140,6 +149,14 @@ data:extend
         pipe_covers = pipecoverspictures(),
         volume = 1000,
         pipe_connections = {{ flow_direction="output", direction = defines.direction.south, position = {1, 1} }},
+        secondary_draw_orders = { north = -1 }
+      },
+      {
+        production_type = "output",
+        pipe_picture = assembler2pipepictures(),
+        pipe_covers = pipecoverspictures(),
+        volume = 1000,
+        pipe_connections = {{ flow_direction="output", direction = defines.direction.south, position = {0, 1} }},
         secondary_draw_orders = { north = -1 }
       },
       {
@@ -263,10 +280,10 @@ data:extend
       {type = "impact",percent = 90},
     },
     impact_category = "metal",--这玩意干啥的，没了它机器不能动):
-    tile_width = 1,--没有这俩行实体中心会位于地格的某一顶点，3格四舍五入占四格，很坏):
+    --tile_width = 1,--没有这俩行实体中心会位于地格的某一顶点，3格四舍五入占四格，很坏):然而2必须要……
     tile_height = 1,
-    selection_box = {{-3.5, -2.5}, {3.5, 2.5}},
-    collision_box = {{-3.2, -2.2}, {3.2, 2.2}},
+    selection_box = {{-3.5, -3}, {3.5, 3}},
+    collision_box = {{-3.2, -2.7}, {3.2, 2.7}},
     fluid_boxes_off_when_no_fluid_recipe = true,--无流体配方时流体接口关闭
     circuit_wire_max_distance = assembling_machine_circuit_wire_max_distance,--这玩意怎么是全局变量啊，该值=9，位于底端-Factorio\data\core\lualib\circuit-connector-sprites.lua
     circuit_connector = circuit_connector_definitions["assembling-machine"],
@@ -274,8 +291,8 @@ data:extend
     close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.75 },
     fluid_boxes =
     --[[
+    7*6
     #=#=#=#
-    =======
     =======
     =======
     =======
@@ -288,7 +305,7 @@ data:extend
         pipe_picture = assembler2pipepictures(),
         pipe_covers = pipecoverspictures(),
         volume = 1000,
-        pipe_connections = {{ flow_direction="input", direction = defines.direction.north, position = {-3, -3} }},
+        pipe_connections = {{ flow_direction="input", direction = defines.direction.north, position = {-3, -2.5} }},
         secondary_draw_orders = { north = -1 }
       },
       {
@@ -296,7 +313,7 @@ data:extend
         pipe_picture = assembler2pipepictures(),
         pipe_covers = pipecoverspictures(),
         volume = 1000,
-        pipe_connections = {{ flow_direction="input", direction = defines.direction.north, position = {-1, -3} }},
+        pipe_connections = {{ flow_direction="input", direction = defines.direction.north, position = {-1, -2.5} }},
         secondary_draw_orders = { north = -1 }
       },
       {
@@ -304,7 +321,7 @@ data:extend
         pipe_picture = assembler2pipepictures(),
         pipe_covers = pipecoverspictures(),
         volume = 1000,
-        pipe_connections = {{ flow_direction="input", direction = defines.direction.north, position = {1, -3} }},
+        pipe_connections = {{ flow_direction="input", direction = defines.direction.north, position = {1, -2.5} }},
         secondary_draw_orders = { north = -1 }
       },
       {
@@ -312,7 +329,7 @@ data:extend
         pipe_picture = assembler2pipepictures(),
         pipe_covers = pipecoverspictures(),
         volume = 1000,
-        pipe_connections = {{ flow_direction="input", direction = defines.direction.north, position = {3, -3} }},
+        pipe_connections = {{ flow_direction="input", direction = defines.direction.north, position = {3, -2.5} }},
         secondary_draw_orders = { north = -1 }
       },
       {
@@ -320,7 +337,7 @@ data:extend
         pipe_picture = assembler2pipepictures(),
         pipe_covers = pipecoverspictures(),
         volume = 1000,
-        pipe_connections = {{ flow_direction="output", direction = defines.direction.south, position = {-3, 3} }},
+        pipe_connections = {{ flow_direction="output", direction = defines.direction.south, position = {3, 2.5} }},
         secondary_draw_orders = { north = -1 }
       },
       {
@@ -328,7 +345,7 @@ data:extend
         pipe_picture = assembler2pipepictures(),
         pipe_covers = pipecoverspictures(),
         volume = 1000,
-        pipe_connections = {{ flow_direction="output", direction = defines.direction.south, position = {-1, 3} }},
+        pipe_connections = {{ flow_direction="output", direction = defines.direction.south, position = {1, 2.5} }},
         secondary_draw_orders = { north = -1 }
       },
       {
@@ -336,7 +353,7 @@ data:extend
         pipe_picture = assembler2pipepictures(),
         pipe_covers = pipecoverspictures(),
         volume = 1000,
-        pipe_connections = {{ flow_direction="output", direction = defines.direction.south, position = {1, 3} }},
+        pipe_connections = {{ flow_direction="output", direction = defines.direction.south, position = {-1, 2.5} }},
         secondary_draw_orders = { north = -1 }
       },
       {
@@ -344,7 +361,7 @@ data:extend
         pipe_picture = assembler2pipepictures(),
         pipe_covers = pipecoverspictures(),
         volume = 1000,
-        pipe_connections = {{ flow_direction="output", direction = defines.direction.south, position = {3, 3} }},
+        pipe_connections = {{ flow_direction="output", direction = defines.direction.south, position = {-3, 2.5} }},
         secondary_draw_orders = { north = -1 }
       },
     },
@@ -471,11 +488,8 @@ data:extend
     close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.75 },
     fluid_boxes =
     --[[
+    13*11
     #=#=#=#=#=#=#
-    =============
-    =============
-    =============
-    =============
     =============
     =============
     =============
