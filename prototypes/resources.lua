@@ -19,7 +19,7 @@ data:extend
   {
     type = "resource",
     name = "rlcpc-ore",
-    icon = "__planet-cyber__/graphics/icons/ores.png",
+    icon = "__planet-cyber__/graphics/icons/ore.png",
     flags = {"placeable-neutral"},
     order = "a-b-h",
     map_color = color_blue,

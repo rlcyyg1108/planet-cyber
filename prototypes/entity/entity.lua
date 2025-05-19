@@ -262,7 +262,7 @@ data:extend
     corpse = "big-remnants",--通解贴图6666666
     dying_explosion = "big-explosion",
     crafting_categories = {"rlcpc-merge"},
-    crafting_speed = 2.5,
+    crafting_speed = 10,
     energy_usage = "10MW",
     --ingredient_count = 64,机器支持的配方物品种类数，暂时理念冲突，注释掉
     module_slots = 8,
@@ -459,7 +459,7 @@ data:extend
     corpse = "big-remnants",--通解贴图6666666
     dying_explosion = "big-explosion",
     crafting_categories = {"rlcpc-merge"},
-    crafting_speed = 10,
+    crafting_speed = 100,
     energy_usage = "10MW",
     --ingredient_count = 64,机器支持的配方物品种类数，暂时理念冲突，注释掉
     module_slots = 8,
